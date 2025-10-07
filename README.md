@@ -9,4 +9,4 @@ For this practice problem in quantim mechanics:
 LLM shows incorrect soluton:
 ![LLM spots incorrect solution](public/Screenshot%202025-10-07%20at%207.04.05%E2%80%AFPM.png)
 
-This makes sense, because it is known that this problem is solved incorrectly in the book where LLM has overfitted from.
+>This makes sense, because it is known that this problem is solved incorrectly in the book where LLM has overfitted from.

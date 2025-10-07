@@ -25,7 +25,7 @@
   <body style="min-width: 450px">
     <div id="banner" style="background-color: #fff3cd; border-bottom: 1px solid #ffeaa7; padding: 10px 20px; cursor: pointer; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
       <div id="banner-title" style="font-weight: bold; font-size: 16px; color: #495057;"># An interesting first finding</div>
-      <div id="banner-content" style="display: none; background-color: white; padding: 15px; border-radius: 5px; border: 1px solid #dee2e6; font-size: 14px; line-height: 1.5; color: #495057; margin-top: 10px; white-space: pre-wrap;"></div>
+      <div id="banner-content" style="display: none; background-color: white; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; font-size: 14px; line-height: 1.6; color: #495057; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; overflow-x: auto;"></div>
     </div>
     <div id="app"></div>
     
@@ -55,8 +55,15 @@
             bannerTitle.style.marginBottom = '10px';
             // Convert markdown to HTML
             let htmlContent = readmeContent
-              .replace(/\n/g, '<br>')
-              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; margin: 10px 0;" />');
+              // Handle blockquotes (lines starting with >) - process before line breaks
+              .replace(/^> (.+)$/gm, '<blockquote style="border-left: 4px solid #dee2e6; padding-left: 15px; margin: 15px 0; color: #6c757d; font-style: italic; background-color: #f8f9fa; padding: 10px 15px; border-radius: 4px;">$1</blockquote>')
+              // Handle headers (lines starting with #)
+              .replace(/^# (.+)$/gm, '<h1 style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #495057;">$1</h1>')
+              .replace(/^## (.+)$/gm, '<h2 style="font-size: 16px; font-weight: bold; margin: 15px 0 8px 0; color: #495057;">$2</h2>')
+              // Handle images with medium size
+              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 600px; height: auto; margin: 15px 0; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />')
+              // Handle line breaks
+              .replace(/\n/g, '<br>');
             bannerContent.innerHTML = htmlContent;
           } else {
             bannerContent.style.display = 'none';
