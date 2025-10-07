@@ -61,7 +61,7 @@
               .replace(/^# (.+)$/gm, '<h1 style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #495057;">$1</h1>')
               .replace(/^## (.+)$/gm, '<h2 style="font-size: 16px; font-weight: bold; margin: 15px 0 8px 0; color: #495057;">$2</h2>')
               // Handle images with medium size
-              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 600px; height: auto; margin: 15px 0; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />')
+              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 1400px; height: auto; margin: 15px 0; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />')
               // Handle line breaks
               .replace(/\n/g, '<br>');
             bannerContent.innerHTML = htmlContent;
