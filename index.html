@@ -119,6 +119,23 @@
         border-bottom: 1px solid #3498db;
       }
       
+      .footnote-ref {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .footnote-ref:hover {
+        border-bottom: 1px solid #3498db;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
       .preview-link {
         display: inline-block;
         background: linear-gradient(135deg, #3498db, #2980b9);
@@ -557,7 +574,7 @@
       <h1>TeorMinimumEval</h1>
       <p>The Theoretical Minimum is an exam designed by <a href="https://en.wikipedia.org/wiki/Lev_Landau">Lev Landau</a> to assess student's <em>understanding</em> of physics. L.Landau regarded it as the "minimum" necessary to begin serious work in theoretical physics, and required it for entry into his elite seminar and research school. Since its introduction in 1933, only 900 <a href="https://teorminimum.ru">students</a> have succeeded.</p>
 
-      <p>TeorMinimumEval aims to approximate(*) Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
+      <p>TeorMinimumEval aims to approximate<a href="#footnote-1" class="footnote-ref">(*)</a> Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
 
   
       <div style="margin-top: 30px; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
@@ -568,7 +585,7 @@
         <iframe src="preview.html" width="100%" height="200" frameborder="0" style="display: block;"></iframe>
       </div>
 
-      <h2>What are we trying to do?</h2>
+      <h3>What are we trying to do?</h3>
 
       <p>
         We argue that current physics benchmarks primarily test pattern recall rather than true understanding. TeorMinimumEval seeks to reconstruct Landau’s Theoretical Minimum exam—one of the most challenging real-world tests of genuine <em>understanding</em>—as an evaluation benchmark for AI.
@@ -855,18 +872,18 @@
 
       <h3>Other notes</h3>
 
-      <p>This eval is part of a larger project to improve AI's ability to learn principles of solving problems and conducting scientific research that generalise the most. We believe that current AI models dont exhibit that ability yet and we want to learn how to train models in way that they do (**). One of the ways that ability is seen is through observing how a student solves problems, which motivated work in better evals and more convenient annotation infra.</p>
+      <p>This eval is part of a larger project to improve AI's ability to learn principles of solving problems and conducting scientific research that generalise the most. We believe that current AI models dont exhibit that ability yet and we want to learn how to train models in way that they do <a href="#footnote-2" class="footnote-ref">(**)</a>. One of the ways that ability is seen is through observing how a student solves problems, which motivated work in better evals and more convenient annotation infra.</p>
 
-      <p>There are several ways this eval is different from all existing evals. One, it includes a private collection of hard and beautiful problems that almost do not appear in any other benchmarks (***). Two, and perhaps most important one, is it scores AI system not only on the correctness of the final answer (often is a formula), but all sorts of other metrics of progress. This is heavily motivated by real academic evidence that a good problem can teach a student a lot once student spends enough time with it. Any well educated scientist knows that it is not only useful to arrive to the correct solution, but also learn how one problem connects to another, how it demonstrates sertain methods, where does the problem come from, what tactics are usefull for the problem, that parts of the solution are creative and what parts and mechanical. On the real exam, a student if often allowed to take their time with very mechanical work of, say, taking integrals, where it is easy to make a typo, and is rewarded disproportionatelly more for good intuitions, beautiful solutions, and etc.</p>
+      <p>There are several ways this eval is different from all existing evals. One, it includes a private collection of hard and beautiful problems that almost do not appear in any other benchmarks <a href="#footnote-3" class="footnote-ref">(***)</a>. Two, and perhaps most important one, is it scores AI system not only on the correctness of the final answer (often is a formula), but all sorts of other metrics of progress. This is heavily motivated by real academic evidence that a good problem can teach a student a lot once student spends enough time with it. Any well educated scientist knows that it is not only useful to arrive to the correct solution, but also learn how one problem connects to another, how it demonstrates sertain methods, where does the problem come from, what tactics are usefull for the problem, that parts of the solution are creative and what parts and mechanical. On the real exam, a student if often allowed to take their time with very mechanical work of, say, taking integrals, where it is easy to make a typo, and is rewarded disproportionatelly more for good intuitions, beautiful solutions, and etc.</p>
 
       <p>A modified version of this eval naturally becomes an RL environment.</p>
 
       <div class="footnote">
-        <p>(*) real exams is more than just writing down solution for problems and getting a score. It is collaboration between student and examinator that often can streer away from original tasks into a series a follow-up questions, new problems, perhaps all the ciruculum, and can last many hours. Exactly the correct way to approximate such human-human interraction with chain of thought solver, self scitique, LLM as a judge, verifiable rewards, or other, is currently a subject of study and experimentation.</p>
+        <p id="footnote-1">(*) real exams is more than just writing down solution for problems and getting a score. It is collaboration between student and examinator that often can streer away from original tasks into a series a follow-up questions, new problems, perhaps all the ciruculum, and can last many hours. Exactly the correct way to approximate such human-human interraction with chain of thought solver, self scitique, LLM as a judge, verifiable rewards, or other, is currently a subject of study and experimentation.</p>
 
-        <p>(**) Of course, plenty of engineering and research is already done to train models in a way that they generalise most, and there is even some empirical evidence (double dessend) and theoretical foundations (compression, symmetries) that they do. We are only talking about how keep making improvements on top of that, perhaps by leveraging new empricial evidence such as new scaling laws in test time compute and RL compute with better collected datasets and new environments.</p>
+        <p id="footnote-2">(**) Of course, plenty of engineering and research is already done to train models in a way that they generalise most, and there is even some empirical evidence (double dessend) and theoretical foundations (compression, symmetries) that they do. We are only talking about how keep making improvements on top of that, perhaps by leveraging new empricial evidence such as new scaling laws in test time compute and RL compute with better collected datasets and new environments.</p>
 
-        <p>(***) Exactly how much does this dataset is "poluted" or intersets with other benchmarks was not yet carefully analysed but is useful it to understand and is WIP.</p>
+        <p id="footnote-3">(***) Exactly how much does this dataset is "poluted" or intersets with other benchmarks was not yet carefully analysed but is useful it to understand and is WIP.</p>
       </div>
 
       <h2>Citation</h2>
