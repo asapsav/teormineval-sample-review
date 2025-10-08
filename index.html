@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TeorMinimumEval</title>
-    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/site.webmanifest" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -20,18 +24,39 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         line-height: 1.6;
         color: #333;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #6c757d;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        background-image: 
+          url('public/landau-mugshot-profile.png'),
+          url('public/landau-attention-mugshot-2.png'),
+          url('public/landau-blackboard-attention-2-left.png'),
+          url('public/landau-blackboard-attention-2-right.png');
+        background-position: 
+          left 1200px,
+          right 600px,
+          left 3000px,
+          right 2400px;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: auto 100vh;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
       }
       
+      
       .container {
-        background: white;
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding: 40px;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
+        margin: 20px;
+        max-width: 700px;
+        width: 100%;
+        box-sizing: border-box;
       }
       
       h1 {
@@ -163,8 +188,7 @@
       .hero-image img {
         max-width: 100%;
         height: auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        border-radius: 0px;
       }
       
       .roadmap-container {
@@ -650,6 +674,18 @@
         .personal-link {
           align-self: flex-start;
         }
+        
+        /* Hide background images on mobile for better readability */
+        body {
+          background-image: none;
+        }
+      }
+      
+      @media (min-width: 1200px) {
+        /* Ensure background images are visible on larger screens */
+        body {
+          background-size: auto 100vh;
+        }
       }
     </style>
   </head>
@@ -657,10 +693,10 @@
   <body>
     <div class="container">
       <div class="hero-image">
-        <img width="300" height="230" alt="landau-mugshot-attention" src="public/landau-mugshot-attention.png" />
+        <img width="450" alt="teormininum_eval_logo" src="public/teormininum_eval_logo.png" />
       </div>
 
-      <h1>TeorMinimumEval</h1>
+      <!-- <h1>TeorMinimumEval</h1> -->
       <p>The Theoretical Minimum is an exam designed by <a href="https://en.wikipedia.org/wiki/Lev_Landau" target="_blank">Lev Landau</a> to assess student's <em>understanding</em> of physics. L.Landau regarded it as the "minimum" necessary to begin serious work in theoretical physics, and required it for entry into his elite seminar and research school. Since its introduction in 1933, only 900 <a href="https://teorminimum.ru" target="_blank">students</a> have succeeded.</p>
 
       <p>TeorMinimumEval aims to approximate<a href="#footnote-1" class="footnote-ref">(*)</a> Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
