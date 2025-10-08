@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inspect View</title>
+    <link rel="icon" href="./assets/favicon.svg" />
+
+    <script>
+      // Forward the theme (dark or light) onto the root html element
+      // this parameter will tend to appear when the view is hosted within
+      // an iframe (e.g. in vscode)
+      const urlParams = new URLSearchParams(window.location.search);
+      const theme = urlParams.get("inspectLogviewThemeCategory");
+      if (theme) {
+        document.documentElement.setAttribute("data-text-highlight", theme);
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index.css">
+    <script id="log_dir_context" type="application/json">{"log_dir": "logs"}</script>
+  </head>
+
+  <body style="min-width: 450px">
+    <div id="banner" style="background-color: #fff3cd; border-bottom: 1px solid #ffeaa7; padding: 10px 20px; cursor: pointer; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <div id="banner-title" style="font-weight: bold; font-size: 16px; color: #495057;"># An interesting first finding</div>
+      <div id="banner-content" style="display: none; background-color: white; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; font-size: 14px; line-height: 1.6; color: #495057; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; overflow-x: auto;"></div>
+    </div>
+    <div id="app"></div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('banner');
+        const bannerContent = document.getElementById('banner-content');
+        const bannerTitle = document.getElementById('banner-title');
+        let isExpanded = false;
+        let readmeContent = '';
+        
+        banner.addEventListener('click', async function() {
+          if (!isExpanded && !readmeContent) {
+            try {
+              const response = await fetch('./README.md');
+              readmeContent = await response.text();
+            } catch (error) {
+              console.error('Failed to load README:', error);
+              readmeContent = "# An interesting first finding\n\nFor this practice problem in quantim mechanics:\n\n>Find the radiation of a finite system of charges with accuracy up to terms of order (1/c^5). Express it in terms of the system's electric dipole, quadrupole, and magnetic moments.\n\n![The original formulation of the problem](public/Screenshot%202025-10-07%20at%207.02.33%E2%80%AFPM.png)\n\nLLM shows incorrect solutons:\n![LLM spots incorrect solution](public/Screenshot%202025-10-07%20at%207.04.05%E2%80%AFPM.png)\n\nThis makes sense, because it is known that this problem is solved incorrectly in the book where LLM has overfitted from.";
+            }
+          }
+          
+          isExpanded = !isExpanded;
+          
+          if (isExpanded) {
+            bannerContent.style.display = 'block';
+            bannerTitle.style.marginBottom = '10px';
+            // Convert markdown to HTML
+            let htmlContent = readmeContent
+              // Handle blockquotes (lines starting with >) - process before line breaks
+              .replace(/^> (.+)$/gm, '<blockquote style="border-left: 4px solid #dee2e6; padding-left: 15px; margin: 15px 0; color: #6c757d; font-style: italic; background-color: #f8f9fa; padding: 10px 15px; border-radius: 4px;">$1</blockquote>')
+              // Handle headers (lines starting with #)
+              .replace(/^# (.+)$/gm, '<h1 style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #495057;">$1</h1>')
+              .replace(/^## (.+)$/gm, '<h2 style="font-size: 16px; font-weight: bold; margin: 15px 0 8px 0; color: #495057;">$2</h2>')
+              // Handle images with medium size
+              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 1400px; height: auto; margin: 15px 0; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />')
+              // Handle line breaks
+              .replace(/\n/g, '<br>');
+            bannerContent.innerHTML = htmlContent;
+          } else {
+            bannerContent.style.display = 'none';
+            bannerTitle.style.marginBottom = '0';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

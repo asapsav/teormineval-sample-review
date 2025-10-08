@@ -3,74 +3,549 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inspect View</title>
-    <link rel="icon" href="./assets/favicon.svg" />
-
-    <script>
-      // Forward the theme (dark or light) onto the root html element
-      // this parameter will tend to appear when the view is hosted within
-      // an iframe (e.g. in vscode)
-      const urlParams = new URLSearchParams(window.location.search);
-      const theme = urlParams.get("inspectLogviewThemeCategory");
-      if (theme) {
-        document.documentElement.setAttribute("data-text-highlight", theme);
-        document.documentElement.setAttribute("data-bs-theme", theme);
+    <title>TeorMinimumEval</title>
+    <link rel="icon" href="assets/favicon.svg" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fafafa;
       }
-    </script>
-    <script type="module" crossorigin src="./assets/index.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index.css">
-    <script id="log_dir_context" type="application/json">{"log_dir": "logs"}</script>
+      
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+      }
+      
+      h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+      }
+      
+      h2 {
+        color: #34495e;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-left: 4px solid #3498db;
+        padding-left: 15px;
+      }
+      
+      h3 {
+        color: #2c3e50;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+      
+      h4 {
+        color: #34495e;
+        margin-top: 25px;
+        margin-bottom: 10px;
+      }
+      
+      p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+      
+      blockquote {
+        border-left: 4px solid #3498db;
+        margin: 20px 0;
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #555;
+      }
+      
+      ul, ol {
+        margin-bottom: 15px;
+        padding-left: 25px;
+      }
+      
+      li {
+        margin-bottom: 8px;
+      }
+      
+      code {
+        background-color: #f1f2f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.9em;
+      }
+      
+      pre {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+      
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+      }
+      
+      a {
+        color: #3498db;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s ease;
+      }
+      
+      a:hover {
+        border-bottom: 1px solid #3498db;
+      }
+      
+      .preview-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin: 20px 0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+      }
+      
+      .preview-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        border-bottom: none;
+      }
+      
+      .hero-image {
+        text-align: center;
+        margin: 30px 0;
+      }
+      
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+      
+      .roadmap-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        margin: 20px 0;
+        align-items: center;
+      }
+      
+      .roadmap-arrow {
+        font-size: 24px;
+        color: #3498db;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        padding: 0 5px;
+      }
+      
+      @media (max-width: 768px) {
+        .roadmap-container {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        
+        .roadmap-arrow {
+          display: none;
+        }
+      }
+      
+      .roadmap-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #f39c12;
+      }
+      
+      .roadmap-section h3 {
+        color: #e67e22;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+      }
+      
+      .roadmap-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .roadmap-item {
+        margin: 6px 0;
+        padding: 4px 0;
+        font-size: 0.9em;
+        line-height: 1.4;
+      }
+      
+      .roadmap-item.completed {
+        text-decoration: line-through;
+        color: #7f8c8d;
+      }
+      
+      .roadmap-item.in-progress {
+        color: #f39c12;
+        font-weight: 600;
+      }
+      
+      .roadmap-item.sub-item {
+        margin-left: 15px;
+        font-size: 0.85em;
+        color: #6c757d;
+      }
+      
+      .references {
+        background: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 30px 0;
+      }
+      
+      .references h3 {
+        color: #2c3e50;
+        margin-top: 0;
+      }
+      
+      .correspondence {
+        background: #e8f5e8;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #27ae60;
+      }
+      
+      .bibtex {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.9em;
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+      
+      .footnote {
+        font-size: 0.9em;
+        color: #7f8c8d;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #ecf0f1;
+      }
+      
+      .footnote p {
+        margin-bottom: 10px;
+      }
+      
+      .progress-section {
+        margin: 15px 0;
+      }
+      
+      .progress-item {
+        display: flex;
+        align-items: center;
+        margin: 6px 0;
+        padding: 4px 0;
+      }
+      
+      .progress-label {
+        min-width: 180px;
+        font-weight: 500;
+        color: #2c3e50;
+        margin-right: 12px;
+        font-size: 0.95em;
+      }
+      
+      .progress-label.in-progress {
+        color: #f39c12;
+        font-weight: 600;
+      }
+      
+      .progress-bar-container {
+        flex: 1;
+        background-color: #ecf0f1;
+        border-radius: 6px;
+        height: 16px;
+        position: relative;
+        overflow: hidden;
+        margin-right: 12px;
+      }
+      
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #3498db, #2980b9);
+        border-radius: 6px;
+        transition: width 0.3s ease;
+        position: relative;
+        min-width: 2px;
+      }
+      
+      .progress-bar.in-progress {
+        background: linear-gradient(90deg, #f39c12, #e67e22);
+        animation: pulse 2s infinite;
+      }
+      
+      .progress-bar.completed {
+        background: linear-gradient(90deg, #27ae60, #2ecc71);
+      }
+      
+      .progress-count {
+        font-size: 0.85em;
+        color: #7f8c8d;
+        min-width: 70px;
+        text-align: right;
+      }
+      
+      .progress-count.in-progress {
+        color: #f39c12;
+        font-weight: 600;
+      }
+      
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+        .progress-item {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 8px 0;
+        }
+        
+        .progress-label {
+          min-width: auto;
+          margin-bottom: 6px;
+          margin-right: 0;
+        }
+        
+        .progress-bar-container {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: 6px;
+        }
+        
+        .progress-count {
+          min-width: auto;
+          text-align: left;
+        }
+      }
+    </style>
   </head>
 
-  <body style="min-width: 450px">
-    <div id="banner" style="background-color: #fff3cd; border-bottom: 1px solid #ffeaa7; padding: 10px 20px; cursor: pointer; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      <div id="banner-title" style="font-weight: bold; font-size: 16px; color: #495057;"># An interesting first finding</div>
-      <div id="banner-content" style="display: none; background-color: white; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; font-size: 14px; line-height: 1.6; color: #495057; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; overflow-x: auto;"></div>
+  <body>
+    <div class="container">
+      <div class="hero-image">
+        <img width="300" height="230" alt="landau-attention-2" src="public/landau-attention-2.png" />
+      </div>
+
+      <h1>TeorMinimumEval</h1>
+      <p>The Theoretical Minimum is an exam designed by <a href="https://en.wikipedia.org/wiki/Lev_Landau">Lev Landau</a> to assess student's <em>understanding</em> of physics. L.Landau regarded it as the "minimum" necessary to begin serious work in theoretical physics, and required it for entry into his elite seminar and research school. Since its introduction in 1933, only 900 <a href="https://teorminimum.ru">students</a> have succeeded.</p>
+
+      <p>TeorMinimumEval aims to approximate(*) Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
+
+  
+      <div style="margin-top: 30px; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <div style="background: #f8f9fa; padding: 10px 15px; border-bottom: 1px solid #dee2e6; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 14px; color: #6c757d; font-weight: 500;">Sample Preview</span>
+          <a href="preview.html" target="_blank" style="background: #3498db; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 500; transition: background-color 0.2s ease;">Open Full View →</a>
+        </div>
+        <iframe src="preview.html" width="100%" height="200" frameborder="0" style="display: block;"></iframe>
+      </div>
+
+      <h2>What are we trying to do?</h2>
+
+      <p>
+        We argue that current physics benchmarks primarily test pattern recall rather than true understanding. TeorMinimumEval seeks to reconstruct Landau’s Theoretical Minimum exam—one of the most challenging real-world tests of genuine <em>understanding</em>—as an evaluation benchmark for AI.
+      </p>
+
+      <p>
+        This evaluation stands out because: <br>
+        1) We have sourced hundreds of hard problems that are previously unseen by LLMs.<br>
+        2) We design scoring systems that assess not only answer correctness, but also critical aspects such as intuition, progress, hypothesis generation, elegance, and other process-based rewards.
+      </p>
+
+      <p>
+        Our goal is to produce a dataset of identified physics hallucinations and reasoning failures, create an RL environment for training on high-quality tactics and problems, and, in the long term, develop better AI assistants for teaching and research.
+      </p>
+
+      <h2>Progress map</h2>
+      
+          <h3>Data</h3>
+          <div class="progress-section">
+            <div class="progress-item">
+              <div class="progress-label">Mathematics I</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar completed" style="width: 4.0%;"></div>
+              </div>
+              <div class="progress-count">14 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Mechanics</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar completed" style="width: 0.6%;"></div>
+              </div>
+              <div class="progress-count">2 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Field Theory</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar completed" style="width: 0.8%;"></div>
+              </div>
+              <div class="progress-count">3 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Mathematics II</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar completed" style="width: 3.4%;"></div>
+              </div>
+              <div class="progress-count">12 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label in-progress">🚧 Quantum Mechanics</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar in-progress" style="width: 91.2%;"></div>
+              </div>
+              <div class="progress-count in-progress">322 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Quantum Electrodynamics</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Statistical Physics I</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Continuum Mechanics</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Electrodynamics of Continuous Media</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Statistical Physics II</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">Physical Kinetics</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+              </div>
+              <div class="progress-count">0 problems</div>
+            </div>
+          </div>
+
+        <div class="roadmap-container">
+          <div class="roadmap-section">
+            <h3>Evals</h3>
+            <ul class="roadmap-list">
+              <li class="roadmap-item completed">✓ Basic run</li>
+              <li class="roadmap-item">Ablations on models, prompts, thinking budget</li>
+              <li class="roadmap-item">Ablations on scoring</li>
+            </ul>
+          </div>
+
+          <div class="roadmap-arrow">→</div>
+
+          <div class="roadmap-section">
+            <h3>Infra</h3>
+            <ul class="roadmap-list">
+              <li class="roadmap-item">Public Leaderboard</li>
+              <li class="roadmap-item">Public problems preview</li>
+              <li class="roadmap-item">Api to submit a model for evaluation</li>
+            </ul>
+          </div>
+
+          <div class="roadmap-arrow">→</div>
+
+          <div class="roadmap-section">
+            <h3>Training</h3>
+            <ul class="roadmap-list">
+              <li class="roadmap-item">RL with LORA</li>
+              <li class="roadmap-item">SFT</li>
+            </ul>
+          </div>
+        </div>
+
+      <h3>Other notes</h3>
+
+      <p>This eval is part of a larger project to improve AI's ability to learn principles of solving problems and conducting scientific research that generalise the most. We believe that current AI models dont exhibit that ability yet and we want to learn how to train models in way that they do (**). One of the ways that ability is seen is through observing how a student solves problems, which motivated work in better evals and more convenient annotation infra.</p>
+
+      <p>There are several ways this eval is different from all existing evals. One, it includes a private collection of hard and beautiful problems that almost do not appear in any other benchmarks (***). Two, and perhaps most important one, is it scores AI system not only on the correctness of the final answer (often is a formula), but all sorts of other metrics of progress. This is heavily motivated by real academic evidence that a good problem can teach a student a lot once student spends enough time with it. Any well educated scientist knows that it is not only useful to arrive to the correct solution, but also learn how one problem connects to another, how it demonstrates sertain methods, where does the problem come from, what tactics are usefull for the problem, that parts of the solution are creative and what parts and mechanical. On the real exam, a student if often allowed to take their time with very mechanical work of, say, taking integrals, where it is easy to make a typo, and is rewarded disproportionatelly more for good intuitions, beautiful solutions, and etc.</p>
+
+      <p>A modified version of this eval naturally becomes an RL environment.</p>
+
+      <div class="footnote">
+        <p>(*) real exams is more than just writing down solution for problems and getting a score. It is collaboration between student and examinator that often can streer away from original tasks into a series a follow-up questions, new problems, perhaps all the ciruculum, and can last many hours. Exactly the correct way to approximate such human-human interraction with chain of thought solver, self scitique, LLM as a judge, verifiable rewards, or other, is currently a subject of study and experimentation.</p>
+
+        <p>(**) Of course, plenty of engineering and research is already done to train models in a way that they generalise most, and there is even some empirical evidence (double dessend) and theoretical foundations (compression, symmetries) that they do. We are only talking about how keep making improvements on top of that, perhaps by leveraging new empricial evidence such as new scaling laws in test time compute and RL compute with better collected datasets and new environments.</p>
+
+        <p>(***) Exactly how much does this dataset is "poluted" or intersets with other benchmarks was not yet carefully analysed but is useful it to understand and is WIP.</p>
+      </div>
+
+      <div class="correspondence">
+        <h3>Correspondence</h3>
+        <p><a href="mailto:savelii.kho@gmail.com">savelii.kho@gmail.com</a></p>
+      </div>
+
+      <h2>Citation</h2>
+      <div class="bibtex">
+@software{Kholin2025TeorMinimumEval,
+  author       = {Savelii Kholin and David Saykin},
+  title        = {TeorMinimumEval: A Benchmark for Evaluating AI's Understanding of Physics},
+  year         = {2025},
+  version      = {0.1.0},
+  doi          = {10.5281/zenodo.xxxxxxx},
+  url          = {https://github.com/asapsav/TeorMininumEval},
+  note         = {Available at GitHub. MIT License.}
+}
+      </div>
     </div>
-    <div id="app"></div>
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const banner = document.getElementById('banner');
-        const bannerContent = document.getElementById('banner-content');
-        const bannerTitle = document.getElementById('banner-title');
-        let isExpanded = false;
-        let readmeContent = '';
-        
-        banner.addEventListener('click', async function() {
-          if (!isExpanded && !readmeContent) {
-            try {
-              const response = await fetch('./README.md');
-              readmeContent = await response.text();
-            } catch (error) {
-              console.error('Failed to load README:', error);
-              readmeContent = "# An interesting first finding\n\nFor this practice problem in quantim mechanics:\n\n>Find the radiation of a finite system of charges with accuracy up to terms of order (1/c^5). Express it in terms of the system's electric dipole, quadrupole, and magnetic moments.\n\n![The original formulation of the problem](public/Screenshot%202025-10-07%20at%207.02.33%E2%80%AFPM.png)\n\nLLM shows incorrect solutons:\n![LLM spots incorrect solution](public/Screenshot%202025-10-07%20at%207.04.05%E2%80%AFPM.png)\n\nThis makes sense, because it is known that this problem is solved incorrectly in the book where LLM has overfitted from.";
-            }
-          }
-          
-          isExpanded = !isExpanded;
-          
-          if (isExpanded) {
-            bannerContent.style.display = 'block';
-            bannerTitle.style.marginBottom = '10px';
-            // Convert markdown to HTML
-            let htmlContent = readmeContent
-              // Handle blockquotes (lines starting with >) - process before line breaks
-              .replace(/^> (.+)$/gm, '<blockquote style="border-left: 4px solid #dee2e6; padding-left: 15px; margin: 15px 0; color: #6c757d; font-style: italic; background-color: #f8f9fa; padding: 10px 15px; border-radius: 4px;">$1</blockquote>')
-              // Handle headers (lines starting with #)
-              .replace(/^# (.+)$/gm, '<h1 style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #495057;">$1</h1>')
-              .replace(/^## (.+)$/gm, '<h2 style="font-size: 16px; font-weight: bold; margin: 15px 0 8px 0; color: #495057;">$2</h2>')
-              // Handle images with medium size
-              .replace(/!\[([^\]]*)\]\(([^)]*)\)/g, '<img src="$2" alt="$1" style="max-width: 1400px; height: auto; margin: 15px 0; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />')
-              // Handle line breaks
-              .replace(/\n/g, '<br>');
-            bannerContent.innerHTML = htmlContent;
-          } else {
-            bannerContent.style.display = 'none';
-            bannerTitle.style.marginBottom = '0';
-          }
-        });
-      });
-    </script>
   </body>
 </html>
