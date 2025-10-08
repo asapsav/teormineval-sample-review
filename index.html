@@ -661,7 +661,7 @@
       </div>
 
       <h1>TeorMinimumEval</h1>
-      <p>The Theoretical Minimum is an exam designed by <a href="https://en.wikipedia.org/wiki/Lev_Landau">Lev Landau</a> to assess student's <em>understanding</em> of physics. L.Landau regarded it as the "minimum" necessary to begin serious work in theoretical physics, and required it for entry into his elite seminar and research school. Since its introduction in 1933, only 900 <a href="https://teorminimum.ru">students</a> have succeeded.</p>
+      <p>The Theoretical Minimum is an exam designed by <a href="https://en.wikipedia.org/wiki/Lev_Landau" target="_blank">Lev Landau</a> to assess student's <em>understanding</em> of physics. L.Landau regarded it as the "minimum" necessary to begin serious work in theoretical physics, and required it for entry into his elite seminar and research school. Since its introduction in 1933, only 900 <a href="https://teorminimum.ru" target="_blank">students</a> have succeeded.</p>
 
       <p>TeorMinimumEval aims to approximate<a href="#footnote-1" class="footnote-ref">(*)</a> Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
 
@@ -697,18 +697,18 @@
       <h3>Contributors</h3>
         <div class="contributors-container">
           <div class="contributor-item">
-            <a class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" ontouchstart="toggleBioTouch(event, this)">Savelii Kholin</a>
+            <a href="https://savelii.co" target="_blank" class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" onclick="handleContributorClick(event, this)" ontouchstart="toggleBioTouch(event, this)">Savelii Kholin</a>
             <div class="contributor-bio" style="display: none;">
               <p><strong>Competitive ML + systems.</strong> Savelii's open-source AIMO hit top-7% (Kaggle bronze) in Olympiad-math solving and documented a ~100× inference speedup on dual T4s; shipped scMagic2, a vector-DB recommender for scRNA-seq tooling; plus prototypes like Turing Hall for interactive math. He also worked in McKinsey, was early eng in YC startup, and is a graduate B.S. Physics from MIPT and M.S. from Duke.</p>
-              <a href="https://savelii.co" class="personal-link">savelii.co</a>
+              <a href="https://savelii.co" target="_blank" class="personal-link">savelii.co</a>
             </div>
           </div>
           
           <div class="contributor-item">
-            <a class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" ontouchstart="toggleBioTouch(event, this)">David Saykin</a>
+            <a href="https://saykind.github.io" target="_blank" class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" onclick="handleContributorClick(event, this)" ontouchstart="toggleBioTouch(event, this)">David Saykin</a>
             <div class="contributor-bio" style="display: none;">
               <p><strong>PRL + PRB in quantum materials.</strong> David led/co-authored a <em>Phys. Rev. Lett.</em> (2023) on high-resolution polar Kerr studies of kagome metal CsV₃Sb₅, plus <em>Phys. Rev. B</em> (2022) on magnetism–superconductivity interplay in UTe₂, with earlier <em>Phys. Rev. Research</em> (2020) on 2D membrane mechanics. David is a graduate B.S.,M.S Physics from MIPT, PhD in Physics from Stanford, and currently works at Apple. David passed TeorMinimum in 2016.</p>
-              <a href="https://saykind.github.io" class="personal-link">saykind.github.io</a>
+              <a href="https://saykind.github.io" target="_blank" class="personal-link">saykind.github.io</a>
             </div>
           </div>
         </div>
@@ -829,7 +829,7 @@
           <div class="roadmap-section">
             <h3>Training</h3>
             <ul class="roadmap-list">
-              <li class="roadmap-item">RL runs with <a href="https://thinkingmachines.ai/blog/lora/">LORA</a></li>
+              <li class="roadmap-item">RL runs with <a href="https://thinkingmachines.ai/blog/lora/" target="_blank">LORA</a></li>
               <li class="roadmap-item">SFT runs</li>
             </ul>
           </div>
@@ -1106,6 +1106,16 @@
         } else {
           bio.style.display = 'block';
         }
+      }
+      
+      // Handle click on desktop (navigate to personal website)
+      function handleContributorClick(event, element) {
+        // Only prevent default on mobile (touch devices)
+        if ('ontouchstart' in window) {
+          event.preventDefault();
+          toggleBioTouch(event, element);
+        }
+        // On desktop, let the default link behavior work (navigate to href)
       }
     </script>
   </body>
