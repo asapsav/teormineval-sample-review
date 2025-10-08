@@ -90,7 +90,7 @@ class TeorMinimumEvalHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
 def main():
-    PORT = 8000
+    PORT = 8001
     
     # Change to the script directory
     script_dir = os.path.dirname(os.path.abspath(__file__))

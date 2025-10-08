@@ -562,6 +562,95 @@
           font-size: 14px;
         }
       }
+      
+      /* Contributors Styles */
+      .contributors-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 20px 0;
+      }
+      
+      .contributor-item {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      
+      .contributor-bio {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        min-width: 300px;
+        max-width: 500px;
+      }
+      
+      .contributor-name {
+        color: #3498db !important;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .contributor-name:hover {
+        border-bottom: 1px solid #3498db;
+      }
+      
+      .personal-link {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: rgba(52, 152, 219, 0.1);
+      }
+      
+      .personal-link:hover {
+        color: #3498db;
+        border-bottom: 1px solid #3498db;
+        background: rgba(52, 152, 219, 0.15);
+      }
+      
+      .contributor-bio p {
+        margin: 0;
+        line-height: 1.6;
+        color: #555;
+        font-size: 0.95em;
+      }
+      
+      .contributor-bio strong {
+        color: #2c3e50;
+        font-weight: 600;
+      }
+      
+      .contributor-bio em {
+        color: #34495e;
+        font-style: italic;
+      }
+      
+      @media (max-width: 768px) {
+        .contributors-container {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        
+        .contributor-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .personal-link {
+          align-self: flex-start;
+        }
+      }
     </style>
   </head>
 
@@ -606,8 +695,23 @@
         <p>This eval started on October 6th 2025 as a side project, we are very early, but we want to be transparent about our progress to help us raise small compute grant and attract interested contributors.</p>
       </blockquote>
       <h3>Contributors</h3>
-      <a href="https://github.com/asapsav" style="margin-right: 24px;">Savelii Kholin</a>
-      <a href="https://github.com/saykind">David Saykin</a>
+        <div class="contributors-container">
+          <div class="contributor-item">
+            <a class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" ontouchstart="toggleBioTouch(event, this)">Savelii Kholin</a>
+            <div class="contributor-bio" style="display: none;">
+              <p><strong>Competitive ML + systems.</strong> Savelii's open-source AIMO hit top-7% (Kaggle bronze) in Olympiad-math solving and documented a ~100× inference speedup on dual T4s; shipped scMagic2, a vector-DB recommender for scRNA-seq tooling; plus prototypes like Turing Hall for interactive math. He also worked in McKinsey, was early eng in YC startup, and is a graduate B.S. Physics from MIPT and M.S. from Duke.</p>
+              <a href="https://savelii.co" class="personal-link">savelii.co</a>
+            </div>
+          </div>
+          
+          <div class="contributor-item">
+            <a class="contributor-name" onmouseenter="showBio(this)" onmouseleave="hideBio(this)" ontouchstart="toggleBioTouch(event, this)">David Saykin</a>
+            <div class="contributor-bio" style="display: none;">
+              <p><strong>PRL + PRB in quantum materials.</strong> David led/co-authored a <em>Phys. Rev. Lett.</em> (2023) on high-resolution polar Kerr studies of kagome metal CsV₃Sb₅, plus <em>Phys. Rev. B</em> (2022) on magnetism–superconductivity interplay in UTe₂, with earlier <em>Phys. Rev. Research</em> (2020) on 2D membrane mechanics. David is a graduate B.S.,M.S Physics from MIPT, PhD in Physics from Stanford, and currently works at Apple. David passed TeorMinimum in 2016.</p>
+              <a href="https://saykind.github.io" class="personal-link">saykind.github.io</a>
+            </div>
+          </div>
+        </div>
           <h3>Data</h3>
           <div class="progress-section">
             <div class="progress-item">
@@ -940,7 +1044,69 @@
       // Initialize
       document.addEventListener('DOMContentLoaded', function() {
         scrollProblems(0);
+        
+        // Close contributor bios when clicking outside (for mobile)
+        document.addEventListener('click', function(event) {
+          const clickedElement = event.target;
+          const contributorItem = clickedElement.closest('.contributor-item');
+          
+          // If click is not on a contributor item, close all bios
+          if (!contributorItem) {
+            const allBios = document.querySelectorAll('.contributor-bio');
+            allBios.forEach(bio => {
+              bio.style.display = 'none';
+            });
+          }
+        });
       });
+      
+      // Show bio on hover
+      function showBio(element) {
+        const item = element.closest('.contributor-item');
+        const bio = item.querySelector('.contributor-bio');
+        
+        // Close all other bios first
+        const allBios = document.querySelectorAll('.contributor-bio');
+        allBios.forEach(otherBio => {
+          if (otherBio !== bio) {
+            otherBio.style.display = 'none';
+          }
+        });
+        
+        bio.style.display = 'block';
+      }
+      
+      // Hide bio on mouse leave
+      function hideBio(element) {
+        const item = element.closest('.contributor-item');
+        const bio = item.querySelector('.contributor-bio');
+        bio.style.display = 'none';
+      }
+      
+      // Toggle bio on touch (for mobile)
+      function toggleBioTouch(event, element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const item = element.closest('.contributor-item');
+        const bio = item.querySelector('.contributor-bio');
+        const isVisible = bio.style.display !== 'none';
+        
+        // Close all other bios first
+        const allBios = document.querySelectorAll('.contributor-bio');
+        allBios.forEach(otherBio => {
+          if (otherBio !== bio) {
+            otherBio.style.display = 'none';
+          }
+        });
+        
+        // Toggle current bio
+        if (isVisible) {
+          bio.style.display = 'none';
+        } else {
+          bio.style.display = 'block';
+        }
+      }
     </script>
   </body>
 </html>
