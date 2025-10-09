@@ -390,6 +390,10 @@
         transition: transform 0.6s ease;
       }
       
+      .brows-image.mobile-fast {
+        transition: transform 0.2s ease;
+      }
+      
       .brows-raised {
         transform: translateY(-7px);
       }
@@ -707,6 +711,12 @@
           flex-direction: column !important;
           gap: 12px !important;
           align-items: center !important;
+        }
+        
+        /* Position submit link below GitHub logo on mobile */
+        .submit-link {
+          position: static !important;
+          margin-top: 8px;
         }
       }
       
@@ -1128,12 +1138,38 @@
         const browsImage = document.querySelector('.brows-image');
         
         if (submitLink && browsImage) {
+          // Add mobile-fast class for touch devices
+          if ('ontouchstart' in window) {
+            browsImage.classList.add('mobile-fast');
+          }
+          
+          // Desktop hover behavior
           submitLink.addEventListener('mouseenter', function() {
             browsImage.classList.add('brows-raised');
           });
           
           submitLink.addEventListener('mouseleave', function() {
             browsImage.classList.remove('brows-raised');
+          });
+          
+          // Mobile tap behavior - show animation then redirect
+          submitLink.addEventListener('click', function(event) {
+            // Check if it's a touch device
+            if ('ontouchstart' in window) {
+              event.preventDefault();
+              
+              // Show brows animation
+              browsImage.classList.add('brows-raised');
+              
+              // Wait for brows to go up (0.1s), then down (0.1s), then redirect (0.3s)
+              setTimeout(function() {
+                browsImage.classList.remove('brows-raised');
+                // Redirect after brows go down and additional delay
+                setTimeout(function() {
+                  window.open(submitLink.href, '_blank');
+                }, 500); // 0.1s (down) + 0.3s (delay) = 0.4s total
+              }, 200); // Wait for brows to go up (0.1s)
+            }
           });
         }
         
