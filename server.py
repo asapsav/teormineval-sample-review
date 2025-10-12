@@ -98,7 +98,7 @@ def main():
     
     with socketserver.TCPServer(("", PORT), TeorMinimumEvalHandler) as httpd:
         print(f"Serving TeorMinimumEval at http://localhost:{PORT}")
-        print(f"Logs view should now work at http://localhost:{PORT}/preview.html#/logs/")
+        print(f"Logs view should now work at http://localhost:{PORT}/inspect-ai-viewer/preview.html#/logs/")
         print("Press Ctrl+C to stop the server")
         try:
             httpd.serve_forever()
