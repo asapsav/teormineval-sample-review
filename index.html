@@ -300,14 +300,16 @@
       }
       
       .bibtex {
-        background: #2c3e50;
-        color: #ecf0f1;
-        padding: 20px;
-        border-radius: 8px;
+        background: #f8f9fa;
+        color: #2c3e50;
+        padding: 12px 16px;
+        border-radius: 6px;
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        font-size: 0.9em;
+        font-size: 0.8em;
         overflow-x: auto;
-        margin: 20px 0;
+        margin: 15px 0;
+        border: 1px solid #e9ecef;
+        line-height: 1.4;
       }
       
       .footnote {
@@ -403,6 +405,10 @@
       
       .brows-raised {
         transform: translateY(-7px);
+      }
+      
+      .brows-clickable {
+        transition: transform 0.2s ease;
       }
       
       .submit-link:hover {
@@ -748,17 +754,17 @@
   <body>
     <div class="container">
       <div class="logo-image">
-        <a href="/" style="text-decoration: none; border-bottom: none; position: relative; display: inline-block;">
+        <div style="text-decoration: none; border-bottom: none; position: relative; display: inline-block;">
           <img width="250" alt="teormininum_eval_logo" src="public/teormininum_eval_logo_no_brows.png" />
-          <img width="250" alt="brows" src="public/brows.png" class="brows-image" style="position: absolute; top: 0; left: 0; z-index: 1;" />
-        </a>
-        <div style="margin-top: 15px; position: relative; display: flex; justify-content: center; align-items: center;">
-          <a href="https://github.com/asapsav/TeorMininumEval" target="_blank" class="github-link" style="text-decoration: none; border-bottom: none; display: inline-block;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: #333;">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a href="https://airtable.com/appBIwEl9RwgXitoc/pagzxsqR1zDi7R6eh/form" target="_blank" class="submit-link" style="position: absolute; right: 0; color: #3498db; text-decoration: none; border-bottom: 1px solid transparent; transition: border-bottom 0.3s ease;">
+          <img width="250" alt="brows" src="public/brows.png" class="brows-image brows-clickable" style="position: absolute; top: 0; left: 0; z-index: 1; cursor: pointer;" onclick="animateBrows()" />
+        </div>
+        <div style="margin-top: 15px; position: relative; display: flex; justify-content: center; align-items: center; gap: 20px;">
+          
+          <a href="findings.html" target="_blank" style="color: #3498db; text-decoration: none;">Blog</a>
+          <a href="inspect-ai-viewer/index.html" target="_blank" style="color: #3498db; text-decoration: none;">Traces Example</a>
+          <a href="logs/" target="_blank" style="color: #3498db; text-decoration: none;">Contributors Console</a>
+          <a href="https://github.com/asapsav/TeorMininumEval" target="_blank" style="color: #3498db; text-decoration: none;">GitHub</a>
+          <a href="https://airtable.com/appBIwEl9RwgXitoc/pagzxsqR1zDi7R6eh/form" target="_blank" class="submit-link" style="color: #3498db; text-decoration: none;">
             Submit a problem!
           </a>
         </div>
@@ -774,18 +780,6 @@
 
       <p>TeorMinimum<em><strong>-Eval</strong></em> aims to approximate<a href="#footnote-1" class="footnote-ref">(*)</a> Landau's Theoretical Minimum as an evaluation benchmark for AI systems.</p>
 
-  
-      <div style="margin-top: 30px; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <div style="background: #f8f9fa; padding: 10px 15px; border-bottom: 1px solid #dee2e6; display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 14px; color: #6c757d; font-weight: 500;">Basic Eval Runs Preview</span>
-          <div style="display: flex; gap: 8px;">
-            <a href="findings.html" target="_blank" style="background: #e67e22; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 500; transition: background-color 0.2s ease;">Findings →</a>
-            <a href="inspect-ai-viewer/index.html" target="_blank" style="background: #3498db; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 500; transition: background-color 0.2s ease;">Open Full View →</a>
-            <a href="logs/" target="_blank" style="background: #6c757d; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 500; transition: background-color 0.2s ease;">All logs (restricted) →</a>
-          </div>
-        </div>
-        <iframe src="inspect-ai-viewer/index.html" width="100%" height="200" frameborder="0" style="display: block;"></iframe>
-      </div>
       <h3>Contributors</h3>
       <div class="contributors-container">
         <div class="contributor-item">
@@ -810,12 +804,12 @@
       <h3>What are we trying to do?</h3>
 
       <p>
-        We argue that current physics benchmarks primarily test pattern recall rather than true understanding. TeorMinimumEval seeks to reconstruct Landau’s Theoretical Minimum exam—one of the most challenging real-world tests of genuine <em>understanding</em>—as an evaluation benchmark for AI.
+        We argue that current physics benchmarks primarily test pattern recall rather than true understanding. TeorMinimumEval seeks to reconstruct Landau’s Theoretical Minimum exam - one of the most challenging tests of genuine <em>understanding</em> - as an evaluation benchmark for AI.
       </p>
 
       <p>
         This evaluation stands out because: <br>
-        1) We have sourced hundreds of hard problems that are previously unseen by LLMs.<br>
+        1) We source problems that, to the best of our knowledge, were not used for mid or post training of foundational models yet.<br>
         2) We design scoring systems that assess not only answer correctness, but also critical aspects such as intuition, progress, hypothesis generation, elegance, and other process-based rewards.
       </p>
 
@@ -823,146 +817,16 @@
         Our goal is to produce a dataset of identified physics hallucinations and reasoning failures, create an RL environment for training on high-quality tactics and problems, and, in the long term, develop better AI assistants for teaching and research.
       </p>
 
-      <h2>Progress map</h2>
-
       <h3>Latest News</h3>
-      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3498db;">
-        <ul style="margin: 0; padding-left: 20px;">
-          <li style="margin-bottom: 8px;"><strong>October 6, 2025:</strong> First release with 322 quantum mechanics problems</li>
-          <li style="margin-bottom: 8px;"><strong>October 7, 2025:</strong> Added 31 problems in math, mechanics, and field theory</li>
-          <li style="margin-bottom: 8px;"><strong>October 16, 2025:</strong> Added 690 problems and 690 solutions in quantum mechanics</li>
-          <li style="margin-bottom: 8px;"><strong>October 18, 2025:</strong> <a href="findings.html#teormineval-quantum-v1-first-findings">TeorMinEval-Quantum v1 published</a></li>
+        <ul style="margin: 0; padding-left: 10px;">
+          <li style="margin-bottom: 6px;"><strong>October 6, 2025:</strong> First release with 322 quantum mechanics problems</li>
+          <li style="margin-bottom: 6px;"><strong>October 7, 2025:</strong> Added 31 problems in math, mechanics, and field theory</li>
+          <li style="margin-bottom: 6px;"><strong>October 16, 2025:</strong> Added 690 problems and 690 solutions in quantum mechanics</li>
+          <li style="margin-bottom: 6px;"><strong>October 18, 2025:</strong> <a href="findings.html#teormineval-quantum-v1-first-findings">TeorMinEval-Quantum v1 published</a></li>
         </ul>
-      </div>
-
-          <h3>Summary</h3>
-          <div style="background: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #27ae60;">
-            <table style="width: 100%; border-collapse: collapse; margin: 0;">
-              <thead>
-                <tr style="background: #d5f4e6;">
-                  <th style="padding: 12px; text-align: left; border-bottom: 2px solid #27ae60; font-weight: 600; color: #2c3e50;">Category</th>
-                  <th style="padding: 12px; text-align: center; border-bottom: 2px solid #27ae60; font-weight: 600; color: #2c3e50;">Total Problems</th>
-                  <th colspan="2" style="padding: 12px; text-align: center; border-bottom: 2px solid #27ae60; font-weight: 600; color: #2c3e50;">Problems with Solutions</th>
-                </tr>
-                <tr style="background: #d5f4e6;">
-                  <th style="padding: 8px; text-align: left; border-bottom: 1px solid #27ae60; font-weight: 500; color: #2c3e50; font-size: 0.9em;"></th>
-                  <th style="padding: 8px; text-align: center; border-bottom: 1px solid #27ae60; font-weight: 500; color: #2c3e50; font-size: 0.9em;"></th>
-                  <th style="padding: 8px; text-align: center; border-bottom: 1px solid #27ae60; font-weight: 500; color: #2c3e50; font-size: 0.9em;">with answers only</th>
-                  <th style="padding: 8px; text-align: center; border-bottom: 1px solid #27ae60; font-weight: 500; color: #2c3e50; font-size: 0.9em;">with full solutions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Field Theory</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">3</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">3</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Math 1</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">15</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">12</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Math 2</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">12</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">7</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">7</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Mechanics</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">1</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">1</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Quantum Mechanics</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">1,003</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">693</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">690</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Quantum Electrodynamics</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Statistical Physics I</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Continuum Mechanics</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Electrodynamics of Continuous Media</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Statistical Physics II</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 12px; border-bottom: 1px solid #bdc3c7;">Physical Kinetics</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                  <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
-                </tr>
-                <tr style="background: #f8f9fa; font-weight: 600;">
-                  <td style="padding: 12px; border-top: 2px solid #27ae60; color: #2c3e50;">TOTAL</td>
-                  <td style="padding: 12px; text-align: center; border-top: 2px solid #27ae60; color: #2c3e50;">1,035</td>
-                  <td style="padding: 12px; text-align: center; border-top: 2px solid #27ae60; color: #2c3e50;">719</td>
-                  <td style="padding: 12px; text-align: center; border-top: 2px solid #27ae60; color: #2c3e50;">702</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        <div class="roadmap-container">
-          <div class="roadmap-section">
-            <h3>Evals</h3>
-            <ul class="roadmap-list">
-              <li class="roadmap-item completed">✓ Basic run</li>
-              <li class="roadmap-item">Ablations on models, prompts, thinking budget</li>
-              <li class="roadmap-item">Ablations on scoring</li>
-            </ul>
-          </div>
-
-          <div class="roadmap-arrow">→</div>
-
-          <div class="roadmap-section">
-            <h3>Infra</h3>
-            <ul class="roadmap-list">
-              <li class="roadmap-item">Public leaderboard</li>
-              <li class="roadmap-item">Public problems preview</li>
-              <li class="roadmap-item">An API to submit a model for evaluation</li>
-            </ul>
-          </div>
-
-          <div class="roadmap-arrow">→</div>
-
-          <div class="roadmap-section">
-            <h3>Training</h3>
-            <ul class="roadmap-list">
-              <li class="roadmap-item">RL runs with <a href="https://thinkingmachines.ai/blog/lora/" target="_blank">LORA</a></li>
-              <li class="roadmap-item">SFT runs</li>
-            </ul>
-          </div>
-        </div>
-
-
 
       <h3>Dataset</h3>
+
       <div class="problems-viewer">
         <div class="problems-header">
           <div class="examples-counter">
@@ -979,9 +843,6 @@
             <div class="problem-category">
               <span class="category-icon">⚛️</span>
               <span class="category-name">Quantum Mechanics</span>
-            </div>
-            <div class="problem-question">
-              <strong>Question:</strong>
             </div>
             <div class="problem-content">
               <p>An oscillator of mass $m$ and frequency $\omega$ is in a ground state. Suddenly the frequency changes to $\omega'$. Find the probability of transition to an excited state.</p>
@@ -1000,9 +861,6 @@
             <div class="problem-category">
               <span class="category-icon">⚛️</span>
               <span class="category-name">Quantum Mechanics</span>
-            </div>
-            <div class="problem-question">
-              <strong>Question:</strong>
             </div>
             <div class="problem-content">
               <p>Find</p>
@@ -1026,9 +884,6 @@
               <span class="category-icon">⚛️</span>
               <span class="category-name">Quantum Mechanics</span>
             </div>
-            <div class="problem-question">
-              <strong>Question:</strong>
-            </div>
             <div class="problem-content">
               <p>Find the probability for a particle with the kinetic energy $E = \gamma p^{2}$ to escape from a potential well shown in the figure. Assume $E \ll \frac{\alpha}{r_0}$.</p>
             </div>
@@ -1046,9 +901,6 @@
             <div class="problem-category">
               <span class="category-icon">⚛️</span>
               <span class="category-name">Quantum Mechanics</span>
-            </div>
-            <div class="problem-question">
-              <strong>Question:</strong>
             </div>
             <div class="problem-content">
               <p>Find the ground state energy of positronium which is placed in between two parallel hard walls. The distance between the walls is $a \ll \frac{\hbar}{me^{2}}$.</p>
@@ -1068,9 +920,6 @@
               <span class="category-icon">⚛️</span>
               <span class="category-name">Quantum Mechanics</span>
             </div>
-            <div class="problem-question">
-              <strong>Question:</strong>
-            </div>
             <div class="problem-content">
               <p>Two non-interacting neutrons are in a potential $U = \frac{1}{2}m\omega^2r^2$ in magnetic field $H$. What should be $H$ for given $\omega$ in order for the ground state to have spin 0?</p>
             </div>
@@ -1085,6 +934,98 @@
           </div>
         </div>
       </div>
+
+      <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3498db;">
+        <table style="width: 100%; border-collapse: collapse; margin: 0;">
+          <thead>
+            <tr style="background: #e3f2fd;">
+              <th style="padding: 8px; text-align: left; border-bottom: 2px solid #3498db; font-weight: 600; color: #2c3e50;"></th>
+              <th style="padding: 8px; text-align: center; border-bottom: 2px solid #3498db; font-weight: 600; color: #2c3e50;"># of problems</th>
+              <th colspan="2" style="padding: 8px; text-align: center; border-bottom: 2px solid #3498db; font-weight: 600; color: #2c3e50;"></th>
+            </tr>
+            <tr style="background: #e3f2fd;">
+              <th style="padding: 6px; text-align: left; border-bottom: 1px solid #3498db; font-weight: 500; color: #2c3e50; font-size: 0.9em;"></th>
+              <th style="padding: 6px; text-align: center; border-bottom: 1px solid #3498db; font-weight: 500; color: #2c3e50; font-size: 0.9em;"></th>
+              <th style="padding: 6px; text-align: center; border-bottom: 1px solid #3498db; font-weight: 500; color: #2c3e50; font-size: 0.9em;">with answers only</th>
+              <th style="padding: 6px; text-align: center; border-bottom: 1px solid #3498db; font-weight: 500; color: #2c3e50; font-size: 0.9em;">with full solutions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Field Theory</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">3</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">3</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Math 1</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">15</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">12</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Math 2</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">12</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">7</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">7</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Mechanics</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">2</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">1</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">1</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Quantum Mechanics</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">1,003</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">693</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">690</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Quantum Electrodynamics</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Statistical Physics I</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Continuum Mechanics</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Electrodynamics of Continuous Media</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Statistical Physics II</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 8px; border-bottom: 1px solid #bdc3c7;">Physical Kinetics</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+              <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #bdc3c7;">0</td>
+            </tr>
+            <tr style="background: #e3f2fd; font-weight: 600;">
+              <td style="padding: 8px; border-top: 2px solid #3498db; color: #2c3e50;">TOTAL</td>
+              <td style="padding: 8px; text-align: center; border-top: 2px solid #3498db; color: #2c3e50;">1,035</td>
+              <td style="padding: 8px; text-align: center; border-top: 2px solid #3498db; color: #2c3e50;">719</td>
+              <td style="padding: 8px; text-align: center; border-top: 2px solid #3498db; color: #2c3e50;">702</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       
       <h3>Human baseline</h3>
       <p>To pass the exam a student has to solve 3 problems. Assuming before an exam, due to gossip and etc., a student expects a pool of roughly 100 problems and problems are selected uniformly randomly by a teacher (without replacement), and if a student solved a problem at home they can solve it on exam, a numer of problems a student needs to be able to solve depends on target "confidence" to pass an exam "tomorrow" like this:</p>
@@ -1095,7 +1036,12 @@
       
       <p>We run a poll and avg student will show up on exam if they are 80% confident they'll pass today, the k for this is 93. Thus, our baseline, is 93% accuracy.</p>
       
-      <h3> Inference costs </h3>
+
+
+
+      <h3>Other notes</h3>
+
+      <h4> Inference costs </h4>
       <ul>
         <li>
           One sweep on 300 quantum mechanics problems is ~36$ in gpt-5 compute.
@@ -1111,8 +1057,7 @@
         If you are an inference provider and are able to sponsor compute consider sending a note to: <a href="mailto:savelii.kho@gmail.com">savelii.kho@gmail.com</a>
       </p>
 
-
-      <h3>Other notes</h3>
+      <h4> Motivation </h4>
 
       <p>This eval is part of a larger project to improve AI's ability to learn principles of solving problems and conducting scientific research that generalise the most. We believe that current AI models dont exhibit that ability yet and we want to learn how to train models in way that they do <a href="#footnote-2" class="footnote-ref">(**)</a>. One of the ways that ability is seen is through observing how a student solves problems, which motivated work in better evals and more convenient annotation infra.</p>
 
@@ -1130,7 +1075,7 @@
         <p id="footnote-3">(***) Exactly how much does this dataset is "poluted" or intersets with other benchmarks was not yet carefully analysed but is useful it to understand and is WIP.</p>
       </div>
 
-      <h2>Citation</h2>
+      <h3>Citation</h3>
       <div class="bibtex">
 @software{Kholin2025TeorMinimumEval,
   author       = {Savelii Kholin and David Saykin},
@@ -1296,6 +1241,26 @@
           toggleBioTouch(event, element);
         }
         // On desktop, let the default link behavior work (navigate to href)
+      }
+      
+      // Animate brows when clicked
+      function animateBrows() {
+        const browsImage = document.querySelector('.brows-clickable');
+        if (browsImage) {
+          // Add mobile-fast class for quick animation
+          browsImage.classList.add('mobile-fast');
+          
+          // Jump animation: go up, then down, then back to normal
+          browsImage.classList.add('brows-raised');
+          
+          setTimeout(function() {
+            browsImage.classList.remove('brows-raised');
+            // Remove mobile-fast class after animation to restore original transition speed
+            setTimeout(function() {
+              browsImage.classList.remove('mobile-fast');
+            }, 200); // Wait for animation to complete
+          }, 200); // Wait for brows to go up (0.2s)
+        }
       }
     </script>
   </body>
