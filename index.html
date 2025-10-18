@@ -752,6 +752,259 @@
           background-size: auto 35vh, auto 38vh, auto 100vh, auto 100vh, auto 50vh, auto 45vh, auto 60vh;
         }
       }
+      
+      /* Chat Interface Styles */
+      .chat-container {
+        background: transparent;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .chat-messages {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 0;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        min-height: 200px;
+        transition: height 0.3s ease-out;
+        scroll-behavior: smooth;
+        scroll-padding: 20px;
+      }
+      
+      .message {
+        margin-bottom: 15px;
+        animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        animation-fill-mode: forwards;
+      }
+      
+      .message.user {
+        text-align: right;
+      }
+      
+      .message.assistant {
+        text-align: left;
+      }
+      
+      .message-bubble {
+        display: inline-block;
+        max-width: 80%;
+        padding: 12px 16px;
+        border-radius: 18px;
+        position: relative;
+        word-wrap: break-word;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform-origin: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      
+      .message-bubble:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+      
+      .message.user .message-bubble {
+        background: #3498db;
+        color: white;
+        border-bottom-right-radius: 4px;
+      }
+      
+      .message.assistant .message-bubble {
+        background: #ecf0f1;
+        color: #2c3e50;
+        border-bottom-left-radius: 4px;
+      }
+      
+      .message-header {
+        font-size: 0.8em;
+        font-weight: 600;
+        margin-bottom: 5px;
+        opacity: 0.8;
+      }
+      
+      .reward-indicator {
+        display: inline-block;
+        background: #27ae60;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        font-weight: 600;
+        margin-left: 8px;
+        animation: rewardPulse 0.5s ease-out;
+      }
+      
+      .reward-indicator.negative {
+        background: #e74c3c;
+      }
+      
+      .chat-input-area {
+        display: flex;
+        justify-content: flex-end;
+        padding: 8px 12px;
+        background: transparent;
+        border: none;
+        margin-top: -5px;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+        animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+      }
+      
+      .chat-input-area.hidden {
+        opacity: 0;
+        transform: translateY(15px) scale(0.9);
+        pointer-events: none;
+      }
+      
+      .send-btn {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        font-size: 0.9em;
+      }
+      
+      .send-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+      }
+      
+      .send-btn:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      .reward-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 0;
+        padding: 15px;
+      }
+      
+      .reward-label {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1.1em;
+      }
+      
+      .reward-value {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #27ae60;
+        min-width: 50px;
+        text-align: center;
+      }
+      
+      .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #7f8c8d;
+        font-style: italic;
+        margin: 10px 0;
+        opacity: 0;
+        transform: translateY(15px) scale(0.9);
+        animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      
+      .typing-dots {
+        display: flex;
+        gap: 2px;
+      }
+      
+      .typing-dot {
+        width: 4px;
+        height: 4px;
+        background: #7f8c8d;
+        border-radius: 50%;
+        animation: typingDot 1.4s infinite ease-in-out;
+      }
+      
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        60% {
+          opacity: 0.8;
+          transform: translateY(-2px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      
+      @keyframes rewardPulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      
+      @keyframes typingDot {
+        0%, 60%, 100% {
+          transform: translateY(0);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translateY(-10px);
+          opacity: 1;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .chat-messages {
+          max-height: 300px;
+        }
+        
+        .message-bubble {
+          max-width: 90%;
+        }
+        
+        .reward-summary {
+          flex-direction: column;
+          gap: 15px;
+          align-items: stretch;
+        }
+        
+        .reward-total {
+          justify-content: center;
+        }
+      }
     </style>
   </head>
 
@@ -1030,6 +1283,21 @@
           </tbody>
         </table>
       </div>
+      <h3>Reward Structure Example</h3>
+      
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <!-- Messages will be populated by JavaScript -->
+        </div>
+        <div class="chat-input-area" id="chatInputArea">
+          <button class="send-btn" onclick="startRewardDemo()">Send</button>
+        </div>
+      </div>
+      
+      <div class="reward-display">
+        <span class="reward-label">Total Reward:</span>
+        <span class="reward-value" id="totalReward">0</span>
+      </div>
       
       <h3>Human baseline</h3>
       <p>To pass the exam a student has to solve 3 problems. Assuming before an exam, due to gossip and etc., a student expects a pool of roughly 100 problems and problems are selected uniformly randomly by a teacher (without replacement), and if a student solved a problem at home they can solve it on exam, a numer of problems a student needs to be able to solve depends on target "confidence" to pass an exam "tomorrow" like this:</p>
@@ -1133,6 +1401,7 @@
       // Initialize
       document.addEventListener('DOMContentLoaded', function() {
         scrollProblems(0);
+        initializeChat();
         
         // Add brows animation on hover over submit link
         const submitLink = document.querySelector('.submit-link');
@@ -1265,6 +1534,203 @@
             }, 200); // Wait for animation to complete
           }, 200); // Wait for brows to go up (0.2s)
         }
+      }
+      
+      // Chat Demo Functionality
+      let totalReward = 0;
+      let demoRunning = false;
+      
+      // Custom slow scroll function
+      function slowScrollToBottom(element) {
+        const targetScrollTop = element.scrollHeight - element.clientHeight;
+        const startScrollTop = element.scrollTop;
+        const distance = targetScrollTop - startScrollTop;
+        const duration = 1200; // 1.2 seconds for very slow scroll
+        const startTime = performance.now();
+        
+        function animateScroll(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Use easeOutCubic for very smooth deceleration
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          
+          element.scrollTop = startScrollTop + (distance * easeProgress);
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          }
+        }
+        
+        requestAnimationFrame(animateScroll);
+      }
+      
+      const chatMessages = [
+        {
+          sender: 'user',
+          content: 'Compute the probability P for a quantum two-level system to be in the excited state at t → +∞, if for t → -∞ it was in the ground state. The system is described by a Hamiltonian (assuming ℏ = 1):',
+          math: '\\hat{H} = \\begin{pmatrix} \\Omega \\tanh(\\omega_0 t) & \\Delta \\\\ \\Delta^* & -\\Omega \\tanh(\\omega_0 t) \\end{pmatrix}',
+          reward: 0
+        },
+        {
+          sender: 'assistant',
+          content: 'I need to solve this quantum mechanics problem step by step. Let me start by analyzing the Hamiltonian structure...',
+          reward: 2,
+          reason: 'Good problem setup and initial analysis'
+        },
+        {
+          sender: 'assistant',
+          content: 'The transition probability is simply P = 1/2, since the system has equal probability to be in either state.',
+          reward: -9,
+          reason: 'Incorrect answer - shows lack of understanding'
+        },
+        {
+          sender: 'assistant',
+          content: 'Wait, let me check this by taking the limit and comparing my answer in this limit with the standard Landau-Zener probability.',
+          math: '\\Omega \\to \\infty, \\quad \\omega_0 \\to 0, \\quad \\Omega\\omega_0 \\to \\omega^2 = \\text{const}',
+          reward: 10,
+          reason: 'Excellent sanity check question'
+        },
+        {
+          sender: 'assistant',
+          content: 'The verification shows my previous answer was wrong. Using the adiabatic theorem and the Landau-Zener formula, the correct transition probability is:',
+          math: 'P = \\exp\\left(-\\frac{\\pi |\\Delta|^2}{\\Omega \\omega_0}\\right)',
+          reward: 10,
+          reason: 'Correct answer after verification'
+        }
+      ];
+      
+      function addMessage(messageData, delay = 0) {
+        setTimeout(() => {
+          const chatContainer = document.getElementById('chatMessages');
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message ${messageData.sender}`;
+          
+          let content = `
+            <div class="message-header">${messageData.sender === 'user' ? 'Student' : 'AI Assistant'}</div>
+            <div class="message-bubble">
+              ${messageData.content}
+          `;
+          
+          if (messageData.math) {
+            content += `<div style="text-align: center; margin: 10px 0;">$$${messageData.math}$$</div>`;
+          }
+          
+          if (messageData.reward !== 0) {
+            const rewardClass = messageData.reward < 0 ? 'reward-indicator negative' : 'reward-indicator';
+            const rewardSign = messageData.reward > 0 ? '+' : '';
+            content += `<span class="${rewardClass}">${rewardSign}${messageData.reward} reward</span>`;
+            totalReward += messageData.reward;
+            updateTotalReward();
+          }
+          
+          content += '</div>';
+          messageDiv.innerHTML = content;
+          
+          chatContainer.appendChild(messageDiv);
+          
+          // Very slow, gentle scroll to bottom
+          setTimeout(() => {
+            slowScrollToBottom(chatContainer);
+          }, 400);
+          
+          // Trigger MathJax rendering for new content
+          if (window.MathJax && messageData.math) {
+            MathJax.typesetPromise([messageDiv]);
+          }
+        }, delay);
+      }
+      
+      function showTypingIndicator() {
+        const chatContainer = document.getElementById('chatMessages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'typing-indicator';
+        typingDiv.innerHTML = `
+          <span>AI Assistant is thinking</span>
+          <div class="typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        `;
+        chatContainer.appendChild(typingDiv);
+        
+        // Very slow, gentle scroll to bottom
+        setTimeout(() => {
+          slowScrollToBottom(chatContainer);
+        }, 400);
+        
+        return typingDiv;
+      }
+      
+      function removeTypingIndicator(typingDiv) {
+        if (typingDiv && typingDiv.parentNode) {
+          // Add smooth fade out animation before removing
+          typingDiv.style.opacity = '0';
+          typingDiv.style.transform = 'translateY(-15px) scale(0.9)';
+          typingDiv.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          
+          setTimeout(() => {
+            if (typingDiv.parentNode) {
+              typingDiv.parentNode.removeChild(typingDiv);
+            }
+          }, 400);
+        }
+      }
+      
+      function updateTotalReward() {
+        const rewardElement = document.getElementById('totalReward');
+        rewardElement.textContent = totalReward;
+        rewardElement.style.animation = 'rewardPulse 0.5s ease-out';
+        setTimeout(() => {
+          rewardElement.style.animation = '';
+        }, 500);
+      }
+      
+      function startRewardDemo() {
+        if (demoRunning) return;
+        
+        demoRunning = true;
+        const demoBtn = document.querySelector('.send-btn');
+        const inputArea = document.getElementById('chatInputArea');
+        demoBtn.style.display = 'none';
+        
+        // Only show AI messages (skip the first user message since it's already shown)
+        const aiMessages = chatMessages.slice(1);
+        let currentDelay = 0;
+        
+        aiMessages.forEach((message, index) => {
+          // Show typing indicator before assistant messages
+          setTimeout(() => {
+            const typingDiv = showTypingIndicator();
+            setTimeout(() => {
+              removeTypingIndicator(typingDiv);
+              addMessage(message, 0);
+            }, 3000);
+          }, currentDelay);
+          currentDelay += 4000;
+        });
+        
+        // Demo completes - smoothly fade out the entire input area
+        setTimeout(() => {
+          inputArea.classList.add('hidden');
+          setTimeout(() => {
+            inputArea.style.display = 'none';
+          }, 500); // Wait for transition to complete
+          demoRunning = false;
+        }, currentDelay + 1000);
+      }
+      
+      function initializeChat() {
+        // Show the student message immediately
+        addMessage(chatMessages[0], 0);
+        
+        // Move the send button to appear right after the student message
+        setTimeout(() => {
+          const chatMessages = document.getElementById('chatMessages');
+          const inputArea = document.getElementById('chatInputArea');
+          chatMessages.appendChild(inputArea);
+        }, 100);
       }
     </script>
   </body>
