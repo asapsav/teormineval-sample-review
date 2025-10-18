@@ -1607,7 +1607,7 @@
           messageDiv.className = `message ${messageData.sender}`;
           
           let content = `
-            <div class="message-header">${messageData.sender === 'user' ? 'Student' : 'AI Assistant'}</div>
+            <div class="message-header">${messageData.sender === 'user' ? 'User' : 'Assistant'}</div>
             <div class="message-bubble">
               ${messageData.content}
           `;
@@ -1646,7 +1646,7 @@
         const typingDiv = document.createElement('div');
         typingDiv.className = 'typing-indicator';
         typingDiv.innerHTML = `
-          <span>AI Assistant is thinking</span>
+          <span>thinking</span>
           <div class="typing-dots">
             <div class="typing-dot"></div>
             <div class="typing-dot"></div>
