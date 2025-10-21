@@ -81,7 +81,7 @@ export default function Home() {
         <section className="mb-20">
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <img
-              src="/qm_problems_eval_pass_rate_by_category.png"
+              src="/images/charts/qm_problems_eval_pass_rate_by_category.png"
               alt="Pass rate by category evaluation"
               className="w-full"
             />
@@ -167,7 +167,7 @@ export default function Home() {
             To pass the exam a student has to solve 3 problems. Assuming before an exam, due to gossip and etc., a student expects a pool of roughly 100 problems and problems are selected uniformly randomly by a teacher (without replacement), and if a student solved a problem at home they can solve it on exam, a numer of problems a student needs to be able to solve depends on target "confidence" to pass an exam "tomorrow" like this:
           </p>
           <div className="border border-gray-200 rounded-lg overflow-hidden mb-8">
-            <img src="/prob_to_pass_chart.png" alt="Probability to pass chart" className="w-full" />
+            <img src="/images/charts/prob_to_pass_chart.png" alt="Probability to pass chart" className="w-full" />
           </div>
           <p className="text-gray-700 leading-relaxed">
             We run a poll and avg student will show up on exam if they are 80% confident they&apos;ll pass today, the k for this is 93. Thus, our baseline, is 93% accuracy.

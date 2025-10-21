@@ -47,7 +47,7 @@ export default function Findings() {
           <div className="space-y-8">
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <img
-                src="/qm_problems_eval_mean_score_by_category.png"
+                src="/images/charts/qm_problems_eval_mean_score_by_category.png"
                 alt="Mean score by category analysis"
                 className="w-full"
               />
@@ -58,7 +58,7 @@ export default function Findings() {
             
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <img
-                src="/qm_problems_eval_pass_rate_by_category.png"
+                src="/images/charts/qm_problems_eval_pass_rate_by_category.png"
                 alt="Pass rate by category evaluation"
                 className="w-full"
               />
@@ -69,7 +69,7 @@ export default function Findings() {
             
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <img
-                src="/qm_problems_eval_score_distribution_by_category.png"
+                src="/images/charts/qm_problems_eval_score_distribution_by_category.png"
                 alt="Score distribution analysis by category"
                 className="w-full"
               />
@@ -95,7 +95,7 @@ export default function Findings() {
             
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <img
-                src="/Screenshot%202025-10-07%20at%207.02.33%E2%80%AFPM.png"
+                src="/images/screenshots/Screenshot%202025-10-07%20at%207.02.33%E2%80%AFPM.png"
                 alt="The original formulation of the problem"
                 className="w-full"
               />
@@ -108,7 +108,7 @@ export default function Findings() {
             
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <img
-                src="/Screenshot%202025-10-07%20at%207.04.05%E2%80%AFPM.png"
+                src="/images/screenshots/Screenshot%202025-10-07%20at%207.04.05%E2%80%AFPM.png"
                 alt="LLM spots incorrect solution"
                 className="w-full"
               />
