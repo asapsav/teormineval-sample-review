@@ -24,7 +24,7 @@ export function Navigation({ onLogoHover, onLogoClick }: NavigationProps) {
 
   const links = [
     { href: "/findings", label: "Blog", internal: true },
-    { href: "/inspect-ai-viewer/index.html", label: "Traces", internal: true },
+    { href: "/inspect-ai-viewer/", label: "Traces", internal: true },
     { href: "/logs/", label: "Console", internal: true },
     { href: "https://github.com/asapsav/TeorMininumEval", label: "GitHub", internal: false },
     { href: "https://airtable.com/appBIwEl9RwgXitoc/pagzxsqR1zDi7R6eh/form", label: "Submit Problem", internal: false },
