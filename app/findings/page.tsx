@@ -32,10 +32,6 @@ export default function Findings() {
               ← Back to Main
             </Link>
           </div>
-
-          <h1 className="text-3xl md:text-4xl font-light text-gray-900 mb-8">
-            Timeline of Findings
-          </h1>
         </header>
 
         {/* TeorMinEval-Quantum v.1 first findings */}
@@ -83,7 +79,7 @@ export default function Findings() {
         {/* Example of overfitting */}
         <section className="mb-20">
           <h2 className="text-2xl font-light text-gray-900 mb-8">
-            Example of overfitting
+            Overfitting on wrong textbook solution
           </h2>
           
           <div className="space-y-6 text-gray-700 leading-relaxed">

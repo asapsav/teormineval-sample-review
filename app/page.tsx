@@ -164,13 +164,13 @@ export default function Home() {
         <section className="mb-20">
           <h2 className="text-2xl font-light text-gray-900 mb-8">Human baseline</h2>
           <p className="text-gray-700 leading-relaxed mb-8">
-            To pass the exam a student has to solve 3 problems. Assuming before an exam, due to gossip and etc., a student expects a pool of roughly 100 problems and problems are selected uniformly randomly by a teacher (without replacement), and if a student solved a problem at home they can solve it on exam, a numer of problems a student needs to be able to solve depends on target "confidence" to pass an exam "tomorrow" like this:
+          To pass the exam, the student must solve 3 problems. Assuming that before the exam, due to gossip and so on, the student expects a pool of about 100 problems, and that the problems are chosen uniformly at random without replacement, the number of problems they should know depends on their target confidence of passing:
           </p>
           <div className="border border-gray-200 rounded-lg overflow-hidden mb-8">
             <img src="/images/charts/prob_to_pass_chart.png" alt="Probability to pass chart" className="w-full" />
           </div>
           <p className="text-gray-700 leading-relaxed">
-            We run a poll and avg student will show up on exam if they are 80% confident they&apos;ll pass today, the k for this is 93. Thus, our baseline, is 93% accuracy.
+          We ran a poll and found that the average student will show up for the exam only if they are 80% confident of passing. The corresponding value is ( k = 93 ). Thus, our baseline is 93% accuracy.
           </p>
         </section>
 
@@ -179,16 +179,9 @@ export default function Home() {
           <h2 className="text-2xl font-light text-gray-900 mb-8">Other notes</h2>
 
           <h3 className="text-xl font-light text-gray-900 mb-4">Inference costs</h3>
-          <ul className="space-y-2 text-gray-700 mb-8">
-            <li>
-              One sweep on 300 quantum mechanics problems is ~36$ in gpt-5 compute.
-            </li>
-            <li>
-              One sweep on 31 non qm problems was ~1.5M tokens, of which 900K reasoning tokens, was ~17$ with gemini-2.5-pro.
-            </li>
-          </ul>
+              
           <p className="text-gray-700 leading-relaxed mb-8">
-            We&apos;ll start working on a lighter version of the eval once we finish making this one as comprehensive and hard as possilbe, and we&apos;ll publish it once there will be evidence that it will be just as challanging as the full one.
+          One sweep on 1000 quantum mechanics problems is ~60$ in gpt-5 compute. We&apos;ll start working on a lighter version of the eval once we finish making this one as comprehensive and hard as possilbe, and we&apos;ll publish it once there will be evidence that it will be just as challanging as the full one.
           </p>
           <p className="text-gray-700 leading-relaxed mb-8">
             If you are an inference provider and are able to sponsor compute consider sending a note to: <a href="mailto:savelii.kho@gmail.com" className="text-gray-900 underline decoration-gray-300 hover:decoration-gray-900 transition-colors">savelii.kho@gmail.com</a>
@@ -197,22 +190,21 @@ export default function Home() {
           <h3 className="text-xl font-light text-gray-900 mb-4">Motivation</h3>
           <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
-              This eval is part of a larger project to improve AI&apos;s ability to learn principles of solving problems and conducting scientific research that generalise the most. We believe that current AI models dont exhibit that ability yet and we want to learn how to train models in way that they do <a id="ref-2" href="#footnote-2" className="text-gray-900 underline decoration-gray-300 hover:decoration-gray-900 transition-colors scroll-smooth">²</a>. One of the ways that ability is seen is through observing how a student solves problems, which motivated work in better evals and more convenient annotation infra.
-            </p>
-            <p>
-              There are several ways this eval is different from all existing evals. One, it includes a private collection of hard and beautiful problems that almost do not appear in any other benchmarks <a id="ref-3" href="#footnote-3" className="text-gray-900 underline decoration-gray-300 hover:decoration-gray-900 transition-colors scroll-smooth">³</a>. Two, and perhaps most important one, is it scores AI system not only on the correctness of the final answer (often is a formula), but all sorts of other metrics of progress. This is heavily motivated by real academic evidence that a good problem can teach a student a lot once student spends enough time with it. Any well educated scientist knows that it is not only useful to arrive to the correct solution, but also learn how one problem connects to another, how it demonstrates sertain methods, where does the problem come from, what tactics are usefull for the problem, that parts of the solution are creative and what parts and mechanical. On the real exam, a student if often allowed to take their time with very mechanical work of, say, taking integrals, where it is easy to make a typo, and is rewarded disproportionatelly more for good intuitions, beautiful solutions, and etc.
-            </p>
-            <p>
-              A modified version of this eval naturally becomes an RL environment.
-            </p>
-            <p>
-              After we are done with TeorMinimumEval, we&apos;ll start working on a eval tuned for practical real-world experimental physics, starting with solid state physics, materials design, and superconductivity.
-            </p>
+          This eval is part of a larger project to improve AI’s ability to learn principles of problem solving and scientific research that *actually generalize*. We believe current AI models don’t yet exhibit that ability, and we want to understand how to train them so they do. One way that ability shows up is in how a student solves problems — which motivated our work on better evals and more convenient annotation infra.
+</p>
+<p>
+This eval differs from existing ones in several ways. First, it includes a private collection of hard and beautiful problems that almost never appear in other benchmarks. Second, and maybe the most important, it scores AI systems not only on the correctness of the final answer (often a formula) but on many other metrics of progress. This is motivated by real academic evidence: a good problem can teach a student a lot once they spend enough time with it. Any well-educated scientist knows it’s not only useful to get the right answer, but also to see how one problem connects to another, what methods it demonstrates, where it comes from, what tactics work, which parts of the solution are creative and which are mechanical. On real exams, students can usually take their time with mechanical work (like integrating or simplifying), where typos are easy, but are rewarded much more for good intuition, elegant reasoning, and insight.
+</p>
+<p>
+A modified version of this eval naturally becomes an RL environment.
+</p>
+<p>
+After we finish **TeorMinimumEval**, we’ll start working on an eval tuned for practical experimental physics — starting with solid-state physics, materials design, and superconductivity.
+</p>
           </div>
 
           {/* Footnotes */}
           <div className="mt-12 pt-8 border-t border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900 mb-6">Footnotes</h3>
             <div className="space-y-6 text-sm text-gray-600">
               <div id="footnote-1" className="group relative">
                 <div className="flex items-start gap-3">
@@ -221,8 +213,8 @@ export default function Home() {
                   </span>
                   <div className="flex-1">
                     <p className="leading-relaxed">
-                      real exams is more than just writing down solution for problems and getting a score. It is collaboration between student and examinator that often can streer away from original tasks into a series a follow-up questions, new problems, perhaps all the ciruculum, and can last many hours. Exactly the correct way to approximate such human-human interraction with chain of thought solver, self scitique, LLM as a judge, verifiable rewards, or other, is currently a subject of study and experimentation.
-                    </p>
+                    Real exams are more than just writing down solutions and getting a score. They’re a collaboration between the student and the examiner that often drifts away from the original problems into follow-up questions, new tasks, sometimes even the whole curriculum — and can last for hours. Figuring out how to approximate this kind of human-human interaction using chain-of-thought solvers, self-critique, LLM-as-judge setups, verifiable rewards, or other mechanisms is an open area of study and experimentation.
+</p>
                     <a 
                       href="#ref-1" 
                       className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500 hover:text-gray-700 transition-colors scroll-smooth"
@@ -244,8 +236,8 @@ export default function Home() {
                   </span>
                   <div className="flex-1">
                     <p className="leading-relaxed">
-                      Of course, plenty of engineering and research is already done to train models in a way that they generalise most, and there is even some empirical evidence (double dessend) and theoretical foundations (compression, symmetries) that they do. We are only talking about how keep making improvements on top of that, perhaps by leveraging new empricial evidence such as new scaling laws in test time compute and RL compute with better collected datasets and new environments.
-                    </p>
+                    Of course, a lot of engineering and research has already gone into training models that generalize well — with some empirical evidence (like double descent) and theoretical grounding (compression, symmetries) supporting it. What we’re talking about is how to keep improving on top of that, possibly by leveraging new empirical findings such as scaling laws in test-time compute and RL compute, together with better datasets and new environments.
+</p>
                     <a 
                       href="#ref-2" 
                       className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500 hover:text-gray-700 transition-colors scroll-smooth"
@@ -267,8 +259,8 @@ export default function Home() {
                   </span>
                   <div className="flex-1">
                     <p className="leading-relaxed">
-                      Exactly how much does this dataset is "poluted" or intersets with other benchmarks was not yet carefully analysed but is useful it to understand and is WIP.
-                    </p>
+                    Exactly how much this dataset is “polluted” or overlaps with other benchmarks hasn’t been carefully analyzed yet, but it’s important to understand — and that work is in progress.
+</p>
                     <a 
                       href="#ref-3" 
                       className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500 hover:text-gray-700 transition-colors scroll-smooth"
