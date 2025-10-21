@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-2xl mx-auto px-6 py-12 md:py-20">
         {/* Header */}
         <header className="mb-16 md:mb-24">
           <div className="flex flex-col items-center gap-8 mb-12">
