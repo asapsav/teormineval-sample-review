@@ -7,9 +7,12 @@ import { Contributors } from "@/components/contributors"
 import { DatasetTable } from "@/components/dataset-table"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { AnimatedLogo } from "@/components/animated-logo"
 
 export default function Home() {
   const [copied, setCopied] = useState(false)
+  const [logoHovering, setLogoHovering] = useState(false)
+  const [logoClicked, setLogoClicked] = useState(false)
 
   const handleCopyCitation = async () => {
     const citationText = `@software{Kholin2025TeorMinimumEval,
@@ -38,16 +41,28 @@ export default function Home() {
         <header className="mb-16 md:mb-24">
           <div className="flex flex-col items-center gap-8 mb-12">
             <div className="flex flex-col items-center gap-4">
-              <img 
-                src="/logo.png" 
-                alt="TeorMinimumEval Logo" 
-                className="h-16 w-auto"
+              <AnimatedLogo 
+                className="h-24 w-auto"
+                alt="TeorMinimumEval Logo"
+                onHover={setLogoHovering}
+                onClick={() => {
+                  setLogoClicked(true)
+                  setTimeout(() => setLogoClicked(false), 800)
+                }}
+                externalHover={logoHovering}
+                externalClick={logoClicked}
               />
               <h1 className="text-4xl md:text-5xl font-light tracking-tight text-gray-900 text-center">
                 TeorMinimumEval
               </h1>
             </div>
-            <Navigation />
+            <Navigation 
+              onLogoHover={setLogoHovering}
+              onLogoClick={() => {
+                setLogoClicked(true)
+                setTimeout(() => setLogoClicked(false), 800)
+              }}
+            />
           </div>
 
           <p className="leading-relaxed text-gray-700 mb-6">

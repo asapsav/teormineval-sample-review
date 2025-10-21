@@ -96,6 +96,24 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes brows-wing {
+    0% {
+      transform: translateY(0px) scale(1) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-12px) scale(1.1) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.15) rotate(2deg);
+    }
+    75% {
+      transform: translateY(-10px) scale(1.1) rotate(-1deg);
+    }
+    100% {
+      transform: translateY(0px) scale(1) rotate(0deg);
+    }
+  }
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
