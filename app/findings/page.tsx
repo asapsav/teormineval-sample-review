@@ -13,7 +13,7 @@ export default function Findings() {
           <div className="flex flex-col items-center gap-8 mb-12">
             <div className="flex flex-col items-center gap-4">
               <img 
-                src="/logo.png" 
+                src="/images/logos/logo.png" 
                 alt="TeorMinimumEval Logo" 
                 className="h-16 w-auto"
               />
