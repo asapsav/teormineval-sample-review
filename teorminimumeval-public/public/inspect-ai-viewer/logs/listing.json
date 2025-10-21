@@ -1,0 +1,36 @@
+{
+  "2025-10-07T18-09-36+03-00_multi-problems-eval_gLLMPPTkQ7ZPeEezLNzAbe.eval": {
+    "eval_id": "7BobTCa4B7WMdw5CnkS28Q",
+    "run_id": "5oguTwSK9ayACjK5NBQSD4",
+    "task": "multi_problems_eval",
+    "task_id": "gLLMPPTkQ7ZPeEezLNzAbe",
+    "task_version": 0,
+    "version": 2,
+    "status": "success",
+    "model": "google/gemini-2.5-flash",
+    "started_at": "2025-10-07T18:09:36+03:00",
+    "completed_at": "2025-10-07T18:21:06+03:00",
+    "primary_metric": {
+      "name": "accuracy",
+      "value": 9.2,
+      "params": {}
+    }
+  },
+  "2025-10-07T18-02-25+03-00_qm-problems-eval_AsN6HJ3JTG5L7y2Gn9sqXf.eval": {
+    "eval_id": "SgZbptfrubebKTdgj2azAw",
+    "run_id": "Pm7TCo9kuPhedXbzQSFkMp",
+    "task": "qm_problems_eval",
+    "task_id": "AsN6HJ3JTG5L7y2Gn9sqXf",
+    "task_version": 0,
+    "version": 2,
+    "status": "success",
+    "model": "google/gemini-2.5-flash",
+    "started_at": "2025-10-07T18:02:25+03:00",
+    "completed_at": "2025-10-07T18:12:37+03:00",
+    "primary_metric": {
+      "name": "accuracy",
+      "value": 7.666666666666667,
+      "params": {}
+    }
+  }
+}
