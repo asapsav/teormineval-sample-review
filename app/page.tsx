@@ -39,7 +39,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8 mb-12">
             <div className="flex flex-col items-center gap-4">
               <img 
-                src="/chatgpt-landau-hair-nobd.png" 
+                src="/logo.png" 
                 alt="TeorMinimumEval Logo" 
                 className="h-16 w-auto"
               />
