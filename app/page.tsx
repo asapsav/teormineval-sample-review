@@ -112,6 +112,19 @@ export default function Home() {
           <Contributors />
         </section>
 
+        {/* Funding */}
+        <section className="mb-20">
+          <h2 className="text-2xl font-light text-gray-900 mb-8">Funding</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            This research was supported in part by Lambda, Inc.
+          </p>
+          <img 
+            src="https://lambda.ai/hubfs/2.%20Images/Images%20-%20Site%20Pages/Images%20-%20Homepage/Featured%20Image%20-%20Lambda%20Logo.png"
+            alt="Lambda Logo"
+            className="h-16 w-auto"
+          />
+        </section>
+
         {/* What are we trying to do */}
         <section className="mb-20">
           <h2 className="text-2xl font-light text-gray-900 mb-8">What are we trying to do?</h2>
