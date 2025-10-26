@@ -112,17 +112,24 @@ export default function Home() {
           <Contributors />
         </section>
 
-        {/* Funding */}
+        {/* Supported by */}
         <section className="mb-20">
-          <h2 className="text-2xl font-light text-gray-900 mb-8">Funding</h2>
+          <h2 className="text-2xl font-light text-gray-900 mb-8">Supported by</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            This research was supported in part by Lambda, Inc.
+            This research was supported in part by Lambda, Inc. Training was done using Tinker by Thinking Machines.
           </p>
-          <img 
-            src="https://lambda.ai/hubfs/2.%20Images/Images%20-%20Site%20Pages/Images%20-%20Homepage/Featured%20Image%20-%20Lambda%20Logo.png"
-            alt="Lambda Logo"
-            className="h-16 w-auto"
-          />
+          <div className="flex gap-6 items-center">
+            <img 
+              src="https://lambda.ai/hubfs/2.%20Images/Images%20-%20Site%20Pages/Images%20-%20Homepage/Featured%20Image%20-%20Lambda%20Logo.png"
+              alt="Lambda Logo"
+              className="h-16 w-auto"
+            />
+            <img 
+              src="https://lsvp.com/wp-content/uploads/2025/07/ebea000e-fc92-4bdc-a075-dccc350fe54a_902x390.jpg"
+              alt="Thinking Machines Logo"
+              className="h-12 w-auto"
+            />
+          </div>
         </section>
 
         {/* What are we trying to do */}
