@@ -177,6 +177,14 @@ export default function Home() {
                 </a>
               </span>
             </li>
+            <li className="flex gap-3">
+              <span className="text-gray-400 font-mono text-sm">Oct 22</span>
+              <span>TeorMinEval accepted for private beta of Tinker by Thinking Machines.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-400 font-mono text-sm">Oct 24</span>
+              <span>TeorMinEval won a compute grant from Lambda, Inc.</span>
+            </li>
           </ul>
         </section>
 
